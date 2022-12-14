@@ -36,7 +36,7 @@ public class SemaphoreBarrier implements Barrier {
 			if (timeout == 0) {
 				barrier.acquireUninterruptibly();
 			} else {
-					barrier.tryAcquire(timeout, TimeUnit.MILLISECONDS);
+				barrier.tryAcquire(timeout, TimeUnit.MILLISECONDS);
 			}
 		} catch (InterruptedException e) { }
 			
