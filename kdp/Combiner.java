@@ -1,8 +1,6 @@
 package kdp;
 
-import java.util.ArrayList;
 import java.util.Map;
-import java.util.concurrent.ConcurrentMap;
 
 public class Combiner extends Thread {
 
