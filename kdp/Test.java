@@ -18,13 +18,13 @@ public class Test {
 		long start = System.currentTimeMillis();
 		
 		// Shared buffer for reading from TSV file
-		BoundedBuffer<String> lines = new MonitorBoundedBuffer<>();
+		BoundedBuffer<String> lines = new SemaphoreBoundedBuffer<>();
 		
 		// Shared buffer for communication between Consumers and Combiner
-		BoundedBuffer<Integer> shared = new MonitorBoundedBuffer<>();
+		BoundedBuffer<Integer> shared = new SemaphoreBoundedBuffer<>();
 		
-		Barrier consumerBarrier = new SemaphoreBarrier(consumersNumber);
-		Barrier printerBarrier = new SemaphoreBarrier(1);
+		Barrier consumerBarrier = new MonitorBarrier(consumersNumber);
+		Barrier printerBarrier = new MonitorBarrier(1);
 	
 		ConcurrentMap<Integer, Integer> progress = new ConcurrentHashMap<>();
 		Map<Integer, Integer> results = new HashMap<>();
