@@ -13,7 +13,7 @@ public class Test {
 
 		int consumersNumber = 5;
 		int N = 1000;
-		String fileName = "test_fajlovi/data.tsv";
+		String fileName = "C:\\Users\\User\\eclipse-workspace\\KDP - lab1\\src\\test_fajlovi\\data.tsv";
 		
 		long start = System.currentTimeMillis();
 		
@@ -23,8 +23,8 @@ public class Test {
 		// Shared buffer for communication between Consumers and Combiner
 		BoundedBuffer<Integer> shared = new MonitorBoundedBuffer<>();
 		
-		Barrier consumerBarrier = new MonitorBarrier(consumersNumber);
-		Barrier printerBarrier = new MonitorBarrier(1);
+		Barrier consumerBarrier = new SemaphoreBarrier(consumersNumber);
+		Barrier printerBarrier = new SemaphoreBarrier(1);
 	
 		ConcurrentMap<Integer, Integer> progress = new ConcurrentHashMap<>();
 		Map<Integer, Integer> results = new HashMap<>();
