@@ -15,7 +15,7 @@ public class Test {
 		
 		long start = System.currentTimeMillis();
 		
-		AtomicBroadcastBuffer<Rating> ratings = new LockAtomicBroadcastBuffer<>(consumersNumber, BUFFER_LENGTH);
+		AtomicBroadcastBuffer<Rating> ratings = new RegionAtomicBroadcastBuffer<>(consumersNumber, BUFFER_LENGTH);
 		BoundedBuffer<String> lines = new LockBoundedBuffer<>();
 		
 		Barrier consumerBarrier = new RegionBarrier(consumersNumber);
