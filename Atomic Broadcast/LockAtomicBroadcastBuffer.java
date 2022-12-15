@@ -19,7 +19,7 @@ public class LockAtomicBroadcastBuffer<T> implements AtomicBroadcastBuffer<T> {
 	
 	private T[] buffer;
 	
-	private ThreadLocal<Integer> ri = ThreadLocal.withInitial(() -> 0);
+	private int[] ri;
 	
 	public LockAtomicBroadcastBuffer(int n, int size) {
 		this.n = n;
@@ -33,6 +33,11 @@ public class LockAtomicBroadcastBuffer<T> implements AtomicBroadcastBuffer<T> {
 		
 		this.full = new int[this.n];
 		this.num = new int[this.size];
+		for (int i = 0; i < this.size; i++) {
+			num[i] = n;
+		}	
+		
+		this.ri = new int[this.n];
 	}
 
 	@Override
