@@ -27,6 +27,9 @@ public class LockAtomicBroadcastBuffer<T> implements AtomicBroadcastBuffer<T> {
 		
 		this.buffer = (T[]) new Object[this.size];
 		this.slots = new Condition[this.n];
+		for (int i = 0; i < this.n; i++) {
+			slots[i] = lock.newCondition();
+		}
 		
 		this.full = new int[this.n];
 		this.num = new int[this.size];
